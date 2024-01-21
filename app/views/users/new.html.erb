@@ -1,4 +1,5 @@
-<%= form_with(model: @user, url: new_user_path, id: 'charge-form', class: 'transaction-form-wrap', local: true) do |f| %>
+<%= form_with(model: @user, url: @user, url: users_path, id: 'charge-form', class: 'transaction-form-wrap', local: true) do |f| %>
+      <%= render 'error_messages', model: @user %>
       <div class="introduce">
         <div class="introduce-right">
           <!-- 写真もしくは画像を入力 -->
@@ -42,12 +43,10 @@
             </div>
 
             <label class="form-text">メッセージ</label>
-            <%= f.text_area :message, placeholder: "MESSAGE", class: "message-form" %>
-
-            <%= link_to users_path, class: 'send-btn' do %>
+              <%= f.text_area :message, placeholder: "MESSAGE", class: "message-form" %>
+            </div>
               <%= f.submit "SEND", class: "send" %>
-            <% end %>
-        </div>
-      </div>
-  <% end %>
+        
+         </div>
+       <% end %>
 

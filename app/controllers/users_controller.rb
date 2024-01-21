@@ -8,20 +8,19 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @comment = Comment.new
+    @user_comment = UserComment.new
   end
   
   def create
-    @user = User.new(user_params)
-    @comment = Comment.new(comment_params)
-    if @user.save
-      @comment.save
+    @user_comment = UserComment.new(user_params)
+    if @user_comment.valid?
+      @user_comment.save
       redirect_to users_path
     else
-      puts @user.errors.full_messages
-      puts @comment.errors.full_messages
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
+  
   
   def show
 
@@ -30,9 +29,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :nickname)
-  end
-  def comment_params
-    params.require(:comment).permit(:birthdate, :strengths, :weaknesses).merge(user_id: current_user.id)
+    params.require(:user_comment).permit(:name, :nickname, :birthdate, :strengths, :weaknesses, :image, :message).merge(user_id: current_user.id)
   end
 end

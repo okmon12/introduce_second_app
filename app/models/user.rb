@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true, length: { maximum:6 }
   validates :name, presence: true
-  # belongs_to :comments
+  has_one :comment
 end
       
