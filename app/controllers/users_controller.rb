@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all 
+    @comments = Comment.all
     @user = User.new
     @comment = Comment.new
   end
@@ -8,27 +9,25 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @comment = Comment.new
-    @user_comment = UserComment.new
   end
   
   def create
-    @user_comment = UserComment.new(user_params)
-    if @user_comment.valid?
-      @user_comment.save
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      puts current_user.inspect
       redirect_to users_path
     else
       render :new, status: :unprocessable_entity
     end
   end
-  
-  
-  def show
-
-  end
 
   private
 
   def user_params
-    params.require(:user_comment).permit(:name, :nickname, :birthdate, :strengths, :weaknesses, :image, :message).merge(user_id: current_user.id)
+    params.require(:user).permit(:name, :nickname)
+  end
+  def comment_params
+    user_id = current_user.id
+    params.require(:comment).permit(:birthdate, :strengths, :weaknesses, :image, :message).merge(user_id: current_user.id)
   end
 end
