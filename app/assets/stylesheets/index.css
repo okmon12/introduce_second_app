@@ -19,14 +19,10 @@
   margin: 20px 0;
  }
  
- .user-photo-info {
-  height: 300px;
-  width: 300px;
- }
 
  .user-photo-img {
   position: absolute;
-  bottom: 250px;
+  bottom: 100px;
   right: 200px;
 }
 .transaction-form-wrap {
