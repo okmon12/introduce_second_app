@@ -1,9 +1,19 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  def index
+    @users = User.all 
+    @comments = Comment.all
+    @user = User.new
+    @comment = Comment.new
+  end
+
+  def new
+    @user = User.new
+    @comment = Comment.new
+  end
   def create   
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to users_path
+      redirect_to comments_path
     else
       render :new, status: :unprocessable_entity
    end
