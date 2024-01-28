@@ -2,49 +2,53 @@
   <table class="detail-table">
     <tbody>
       <% @users.each do |user| %>
-      <% if user.id == current_user.id %> 
-        <tr>
-          <th class="detail-user">名前</th>
-          <td class="detail-value"><%= user.name %></td>
-        </tr>
-        <tr>
-          <th class="detail-user">ニックネーム</th>
-          <td class="detail-value"><%= user.nickname %></td>
-        </tr>
-       <% end %>
+        <% if user_signed_in? && same_user?(current_user, user) %>
+          <tr>
+            <th class="detail-user">名前</th>
+            <td class="detail-value"><%= user.name %></td>
+          </tr>
+          <tr>
+            <th class="detail-user">ニックネーム</th>
+            <td class="detail-value"><%= user.nickname %></td>
+          </tr>
+
+          <!-- コメントループをユーザーループの内側に移動 -->
+          <% @comments.each do |comment| %>
+            <!-- 現在のユーザーに関連するコメントを表示 -->
+            <% if comment.user_id == user.id %>
+              <tr>
+                <th class="detail-user">生年月日</th>
+                <td class="detail-value"><%= comment.birthdate %></td>
+              </tr>
+              <tr>
+                <th class="detail-user">強み</th>
+                <td class="detail-value"><%= comment.strengths %></td>
+              </tr>
+              <tr>
+                <th class="detail-user">弱み</th>
+                <td class="detail-value"><%= comment.weaknesses %></td>
+              </tr>
+              <tr>
+                <th class="detail-user">メッセージ</th>
+                <td class="detail-value"><%= comment.message %></td>
+              </tr>
+              
+              <!-- 画像のコードもコメントループの内側に移動 -->
+              <div class='user-photo-info'>
+                <% if comment.image.attached? %>
+                  <%= link_to comment_path(comment) do %>
+                    <%= image_tag comment.image.variant(resize: '500x500'), class: 'user-photo-img' %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag 'test_image.jpg.jpg', class: 'user-photo-img', alt: 'デフォルト画像' %>
+                <% end %>
+              </div>
+              
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
     </tbody>
   </table>
-    <table class="detail-table">
-      <tbody> 
-      <% @comments.each do |comment| %>
-        <tr>
-          <th class="detail-user">生年月日</th>
-          <td class="detail-value"><%= comment.birthdate %></td>
-        </tr>
-        <tr>
-          <th class="detail-user">強み</th>
-          <td class="detail-value"><%= comment.strengths %></td>
-        </tr>
-        <tr>
-          <th class="detail-user">弱み</th>
-          <td class="detail-value"><%= comment.weaknesses %></td>
-        </tr>
-        <tr>
-          <th class="detail-user">メッセージ</th>
-          <td class="detail-value"><%= comment.message %></td>
-        </tr>
-      </tbody>
-    </table>
 
-     <div class='user-photo-info'>
-        <% if comment.image.attached? %>
-          <%= link_to comment_path(comment) do %>
-            <%= image_tag comment.image.variant(resize: '500x500'), class: 'user-photo-img' %>
-          <% end %>
-        <% else %>
-          <%= image_tag 'test_image.jpg.jpg', class: 'user-photo-img', alt: 'Default Image' %>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
+<% end %>

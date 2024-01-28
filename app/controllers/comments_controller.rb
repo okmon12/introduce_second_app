@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   def index
     @users = User.all 
     @comments = Comment.all
+    @current_user = current_user
     @user = User.new
     @comment = Comment.new
   end
