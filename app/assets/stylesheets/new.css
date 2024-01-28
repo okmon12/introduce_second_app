@@ -52,14 +52,13 @@
  }
  .send {
   position: absolute;
-   bottom: 70px;
-   right: 0px;
+   bottom: 30px;
+   right: 600px;
    width: 100px;
    padding: 20px;
    margin: 50px;
    border: 1px solid white;
    color: white;
-   background-color: rgb(255, 0, 191);
    display: block;
  }
  .input-birth-wrap {

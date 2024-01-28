@@ -1,8 +1,7 @@
-<%= form_with model: @comment, url: comments_path, id: 'charge-form', class: 'transaction-form-wrap', data: { turbo: false }, local: true do |f| %>
+<%= form_with model: @user, url: users_path, id: 'charge-form', class: 'transaction-form-wrap', data: { turbo: false }, local: true do |f| %>
   <table class="detail-table">
     <tbody>
       <% @users.each do |user| %>
-      <% if user.id == current_user.id %> 
         <tr>
           <th class="detail-user">名前</th>
           <td class="detail-value"><%= user.name %></td>
@@ -11,13 +10,13 @@
           <th class="detail-user">ニックネーム</th>
           <td class="detail-value"><%= user.nickname %></td>
         </tr>
-       <% end %>
       <% end %>
     </tbody>
   </table>
+
+  <% @comments.each do |comment| %>
     <table class="detail-table">
-      <tbody> 
-      <% @comments.each do |comment| %>
+      <tbody>
         <tr>
           <th class="detail-user">生年月日</th>
           <td class="detail-value"><%= comment.birthdate %></td>
@@ -37,14 +36,12 @@
       </tbody>
     </table>
 
-     <div class='user-photo-info'>
-        <% if comment.image.attached? %>
-          <%= link_to comment_path(comment) do %>
-            <%= image_tag comment.image.variant(resize: '500x500'), class: 'user-photo-img' %>
-          <% end %>
-        <% else %>
-          <%= image_tag 'test_image.jpg.jpg', class: 'user-photo-img', alt: 'Default Image' %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class='user-photo-info'>
+      <% if @comment.image.attached? %>
+        <%= image_tag @comment.image, class: 'user-photo-img' %>
+      <% else %>
+        <%= image_tag 'test_image.jpg.jpg', class: 'user-photo-img', alt: 'Default Image' %>
+      <% end %>
+    </div>
   <% end %>
+<% end %> 

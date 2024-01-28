@@ -18,15 +18,22 @@
   width: 300px;
   margin: 20px 0;
  }
- 
+ .user-photo-info{
+  position: relative;
+  bottom: 200px;
+  right: 200px;
+ }
 
  .user-photo-img {
   position: absolute;
-  bottom: 100px;
-  right: 200px;
+  top: 200px;
+  right: 100px;
 }
 .transaction-form-wrap {
   height: 100vh;
   width: 100vw;
   background-color: lightskyblue;
+}
+.or-text {
+  font-size: 20px;
 }

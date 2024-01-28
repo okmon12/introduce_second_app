@@ -1,0 +1,26 @@
+.comment_btn{
+  display: flex;
+  position: relative;
+  top: 400px;
+  left: 400px;
+}
+.comment-red-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+}
+.comment-destroy{
+  padding: 8px 20px;
+  font-size: 14px;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+
+  display: inline-block;
+}

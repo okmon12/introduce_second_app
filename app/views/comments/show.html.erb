@@ -1,0 +1,35 @@
+<div class='transaction-form-wrap'> 
+    <table class="detail-table">
+      <tbody>
+      <% if @comment.present? %>
+        <tr>
+          <th class="detail-user">生年月日</th>
+          <td class="detail-value"><%= @comment.birthdate %></td>
+        </tr>
+        <tr>
+          <th class="detail-user">強み</th>
+          <td class="detail-value"><%= @comment.strengths %></td>
+        </tr>
+        <tr>
+          <th class="detail-user">弱み</th>
+          <td class="detail-value"><%= @comment.weaknesses %></td>
+        </tr>
+        <tr>
+          <th class="detail-user">メッセージ</th>
+          <td class="detail-value"><%= @comment.message %></td>
+        </tr>
+      <% end %>
+     </tbody>
+    </table>
+
+    <div class='user-photo-info'>
+        <%= image_tag @comment.image.variant(resize: '500x500'), class: 'user-photo-img' %>
+    </div>
+    <div class='comment_btn'>
+      <% if user_signed_in? %> 
+          <%= link_to "編集",edit_comment_path(@comment.id), method: :get, class: "comment-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", comment_path(@comment.id), data: { turbo_method: :delete }, class:"comment-destroy" %>
+      <% end %>
+    </div>
+  </div>
