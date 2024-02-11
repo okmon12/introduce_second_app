@@ -37,7 +37,7 @@
               <div class='user-photo-info'>
                 <% if comment.image.attached? %>
                   <%= link_to comment_path(comment) do %>
-                    <%= image_tag comment.image.variant(resize: '500x500'), class: 'user-photo-img' %>
+                  <%= image_tag comment.image, class: 'user-photo-img' %>
                   <% end %>
                 <% else %>
                   <%= image_tag 'test_image.jpg.jpg', class: 'user-photo-img', alt: 'デフォルト画像' %>

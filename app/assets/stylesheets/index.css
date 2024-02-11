@@ -30,6 +30,8 @@
   position: absolute;
   top: 250px;
   right: 100px;
+  width: 300px;
+  height: 450px;
 }
 .transaction-form-wrap {
   height: 100vh;

@@ -23,7 +23,7 @@
     </table>
 
     <div class='user-photo-info'>
-        <%= image_tag @comment.image.variant(resize: '500x500'), class: 'user-photo-img' %>
+        <%= image_tag @comment.image, class: 'user-photo-img' %>
     </div>
     <div class='comment_btn'>
       <% if user_signed_in? %> 
