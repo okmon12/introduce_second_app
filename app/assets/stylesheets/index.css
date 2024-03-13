@@ -1,11 +1,17 @@
 
- .detail-table {
-  /* background-color: rgb(249, 250, 250); */
+.detail-table  {
   border-radius: 10px;
+  border-collapse: collapse;
   position: absolute;
   top: 100px;
-  left: 200px;
+  left: 200px;   
  }
+
+.detail-table th,
+.detail-table td {
+  border-bottom: 1px solid black;
+}
+
  .detail-user,
  .detail-value {
   border: 1px solid rgb(6, 6, 6);
@@ -16,7 +22,6 @@
   display: inline-block;
   margin: 10px;
   border-radius: 20px;
-
  }
 
   
