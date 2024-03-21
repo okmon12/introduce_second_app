@@ -6,6 +6,7 @@ class CreateComments < ActiveRecord::Migration[7.0]
       t.text :strengths, null: false
       t.text :weaknesses, null: false
       t.references :user, null: false, foreign_key: true
+      t.text :hobby, null: false
       t.timestamps
     end
   end

@@ -5,4 +5,5 @@ class Comment < ApplicationRecord
   validates :weaknesses, presence: true
   validates :message, presence: true
   belongs_to :user
+  validates :hobby, presence: true
 end
